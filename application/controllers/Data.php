@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-
+class Data extends CI_Controller
+{
 	function __construct() {
 		parent::__construct();
 
@@ -13,13 +13,15 @@ class Welcome extends CI_Controller {
 		}
 	}
 
-	public function index()	{
-		redirect("home");
+	public function index() {
+		$this->load->view("admin/home");
 	}
 
-	public function logout() {
-		$this->session->sess_destroy();
-		//$this->SiteAnalyticsModel->trackPage($this->uri->rsegment(1),$this->uri->rsegment(2),base_url().$this->uri->uri_string);
-		redirect('login');
+	public function dataibu() {
+		$this->load->view("admin/home");
+	}
+
+	public function dataanak() {
+		$this->load->view("admin/home");
 	}
 }
