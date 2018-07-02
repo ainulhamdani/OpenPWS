@@ -23,7 +23,7 @@
 					<div class="collapse list-group <?=$this->uri->segment(1)=="dataentry"?"show":""?>" id="submenu1" data-parent="#accordion">
 						<a href="<?=base_url()?>dataentry/byform" class="list-group-item list-group-item-action <?=$this->uri->segment(2)=="byform"?"active":""?>">Berdasarkan Form</a>
 						<a href="<?=base_url()?>dataentry/bytanggal" class="list-group-item list-group-item-action <?=$this->uri->segment(2)=="bytanggal"?"active":""?>">Berdasarkan Tanggal</a>
-						<a href="<?=base_url()?>dataentry/ontime" class="list-group-item list-group-item-action <?=$this->uri->segment(2)=="ontime"?"active":""?>">Ontime Submission</a>
+						<!-- <a href="<?=base_url()?>dataentry/ontime" class="list-group-item list-group-item-action <?=$this->uri->segment(2)=="ontime"?"active":""?>">Ontime Submission</a> -->
 					</div>
 					<a class="list-group-item list-group-item-action list-group-item-secondary"  data-toggle="collapse" href="#submenu2" role="button" aria-expanded="false" aria-controls="submenu2">
 						<span data-feather="file-text"></span> Laporan
