@@ -36,7 +36,7 @@ class AnalyticsEcModel extends CI_Model{
         //make result array from the tables name
         $result_data = array();
         if($range!=""){
-            foreach ($locId as $user=>$desa){
+            foreach ($locId as $uuid=>$desa){
                 $begin = new DateTime($range[0]);
                 $end = new DateTime($range[1]);
                 $data = array();
@@ -44,17 +44,17 @@ class AnalyticsEcModel extends CI_Model{
                     $date    = $i->format("Y-m-d");
                     $data[$date] = 0;
                 }
-                $result_data[$desa] = $data;
+                $result_data[$uuid] = $data;
             }
         }else{
-            foreach ($locId as $user=>$desa){
+            foreach ($locId as $uuid=>$desa){
                 $data = array();
                 for($i=1;$i<=30;$i++){
                     $day     = 30-$i;
                     $date    = date("Y-m-d",  strtotime("-".$day." days"));
                     $data[$date] = 0;
                 }
-                $result_data[$desa] = $data;
+                $result_data[$uuid] = $data;
             }
         }
 
