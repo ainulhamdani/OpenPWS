@@ -87,7 +87,7 @@ $.fn.showChartDataEntryTanggalDrill = function(data,url){
             x.push(index);
             y.push({"name":index,"y":value,"drilldown":index});
         });
-        //console.log(drill);
+        console.log(user);
         var username = user;
         user = user.replace(/ /g,"_");
         $('#'+user).highcharts({
