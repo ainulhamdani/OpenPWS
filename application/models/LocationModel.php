@@ -8,8 +8,53 @@ class LocationModel extends CI_Model{
         parent::__construct();
     }
 
-    public function getAllLoc(){
+    public function getLocId($uuid){
+        $string = file_get_contents('assets/location/'.$uuid.'.json');
+        $loc = json_decode($string, true);
+        $childs = [];
+        if(isset($loc['children'])){
+            foreach ($loc['children'] as $key => $value) {
+                $childs[$key] = $this->sanitizeLabel($value['label']);
+            }
+        }else{
+            $childs[$uuid] = $this->sanitizeLabel($loc['label']);
+        }
 
+
+        return $childs;
+    }
+
+    public function getLocIdAndLabel($uuid){
+        $string = file_get_contents('assets/location/'.$uuid.'.json');
+        $loc = json_decode($string, true);
+        return [$uuid=>$loc['label']];
+    }
+
+    public function getLocIdQuery($locId){
+        $location = '';
+        foreach ($locId as $loc=>$id){
+            $location .= "locationId LIKE '%$id%'";
+            if($id!=  end($locId)) $location .= " OR ";
+        }
+        return $location;
+    }
+
+    public function getParentLabel($uuid){
+        $string = file_get_contents('assets/location/'.$uuid.'.json');
+        $loc = json_decode($string, true);
+        if(isset($loc['parent'])){
+            $string = file_get_contents('assets/location/'.$loc['parent'].'.json');
+            $loc = json_decode($string, true);
+            return $this->sanitizeLabel($loc['label']);
+        }else{
+            return "";
+        }
+    }
+
+    public function getLocationLabel($uuid){
+        $string = file_get_contents('assets/location/'.$uuid.'.json');
+        $loc = json_decode($string, true);
+        return $this->sanitizeLabel($loc['label']);
     }
 
     public function getAllChildLoc($uuid){
@@ -61,5 +106,12 @@ class LocationModel extends CI_Model{
 			}
 		}
 	}
+
+    public function sanitizeLabel($label){
+        $label = str_replace(".","",$label);
+        $label = str_replace("\'","",$label);
+        $label = str_replace(",","",$label);
+        return $label;
+    }
 
 }
